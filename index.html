@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earl Landscape Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --stone: #8c8880;
+    --linen: #f5f2ed;
+    --moss: #4a5240;
+    --cream: #faf8f4;
+    --rule: #d9d5ce;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: var(--cream);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  nav.scrolled { border-color: var(--rule); }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.2;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--stone);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 6rem 4rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-headline {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 3rem;
+  }
+  .hero-headline em { font-style: italic; color: var(--moss); }
+
+  .hero-sub {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: var(--stone);
+    max-width: 34ch;
+    margin-bottom: 3.5rem;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.3rem;
+    width: fit-content;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .hero-cta:hover { color: var(--moss); border-color: var(--moss); }
+  .hero-cta svg { transition: transform 0.2s; }
+  .hero-cta:hover svg { transform: translateX(4px); }
+
+  .hero-right { position: relative; overflow: hidden; }
+  .hero-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.92);
+  }
+
+  .hero-caption {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 1.1rem 0;
+    background: var(--linen);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+  .marquee-track span {
+    white-space: nowrap;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--stone);
+    padding: 0 3rem;
+  }
+  .marquee-track span::before { content: '·'; margin-right: 3rem; color: var(--moss); }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* INTRO */
+  .intro {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    padding: 9rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .intro-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--stone);
+    padding-top: 0.4rem;
+  }
+
+  .intro-body {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+    line-height: 1.45;
+    font-weight: 300;
+    color: var(--ink);
+  }
+  .intro-body em { font-style: italic; color: var(--moss); }
+
+  /* SERVICES */
+  .services {
+    padding: 0 4rem 9rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .services-header {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .services-header h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 1.8rem;
+    letter-spacing: -0.01em;
+  }
+  .services-header span {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+
+  .service-item {
+    padding: 3rem;
+    border-right: 1px solid var(--rule);
+    transition: background 0.3s;
+  }
+  .service-item:last-child { border-right: none; }
+  .service-item:hover { background: var(--linen); }
+
+  .service-num {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: var(--stone);
+    margin-bottom: 2.5rem;
+    display: block;
+  }
+
+  .service-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    margin-bottom: 2rem;
+    filter: brightness(0.95);
+    transition: filter 0.4s;
+  }
+  .service-item:hover .service-img { filter: brightness(1.02); }
+
+  .service-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .service-desc { font-size: 0.82rem; line-height: 1.85; color: var(--stone); }
+
+  /* QUOTE */
+  .quote-section {
+    background: var(--moss);
+    padding: 9rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .quote-section::before {
+    content: '"';
+    position: absolute;
+    top: -2rem; left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--serif);
+    font-size: 30rem;
+    line-height: 1;
+    color: rgba(255,255,255,0.04);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .quote-text {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.8rem);
+    line-height: 1.2;
+    color: #fff;
+    max-width: 18ch;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .quote-attr {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* APPROACH */
+  .approach { display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; }
+
+  .approach-img { overflow: hidden; }
+  .approach-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    filter: brightness(0.9);
+  }
+
+  .approach-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 7rem 5rem;
+    background: var(--linen);
+  }
+
+  .approach-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 2.5rem;
+  }
+
+  .approach-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: 2rem;
+    letter-spacing: -0.01em;
+  }
+  .approach-title em { font-style: italic; color: var(--moss); }
+
+  .approach-text {
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: var(--stone);
+    max-width: 42ch;
+    margin-bottom: 3rem;
+  }
+
+  .approach-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--moss);
+    text-decoration: none;
+    border-bottom: 1px solid var(--moss);
+    padding-bottom: 0.3rem;
+    width: fit-content;
+    transition: opacity 0.2s;
+  }
+  .approach-cta:hover { opacity: 0.65; }
+  .approach-cta svg { transition: transform 0.2s; }
+  .approach-cta:hover svg { transform: translateX(4px); }
+
+  /* CTA STRIP */
+  .cta-strip {
+    padding: 9rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 4rem;
+  }
+
+  .cta-headline {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.5rem, 4.5vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 14ch;
+  }
+  .cta-headline em { font-style: italic; color: var(--moss); }
+
+  .cta-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2rem;
+    flex-shrink: 0;
+  }
+
+  .cta-contact-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.3rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .cta-contact-link:hover { color: var(--moss); border-color: var(--moss); }
+
+  .cta-detail { font-size: 0.8rem; color: var(--stone); text-align: right; line-height: 1.8; }
+  .cta-detail a { color: var(--stone); text-decoration: none; }
+  .cta-detail a:hover { color: var(--ink); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2.5rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--cream);
+  }
+  .footer-copy { font-size: 0.72rem; color: var(--stone); letter-spacing: 0.06em; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--stone);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    Earl Landscape Design
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">The Horticulturalists — Est. Buffalo, NY</p>
+    <h1 class="hero-headline">
+      Gardens that<br>
+      <em>live</em> and<br>
+      breathe
+    </h1>
+    <p class="hero-sub">
+      A combination of art and nature — personalized landscapes that are imaginative, functional, and environmentally sensitive.
+    </p>
+    <a href="gallery.html" class="hero-cta">
+      View Our Work
+      <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+        <path d="M1 5h14M10 1l5 4-5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+  <div class="hero-right">
+    <img src="hero.jpg" alt="Garden by Earl Landscape Design">
+    <span class="hero-caption">Private Residence, Western NY</span>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Landscape Design</span>
+    <span>Planting &amp; Horticulture</span>
+    <span>Stonework &amp; Woodwork</span>
+    <span>Environmental Sensitivity</span>
+    <span>Garden Transformation</span>
+    <span>Landscape Design</span>
+    <span>Planting &amp; Horticulture</span>
+    <span>Stonework &amp; Woodwork</span>
+    <span>Environmental Sensitivity</span>
+    <span>Garden Transformation</span>
+  </div>
+</div>
+
+<section class="intro">
+  <div>
+    <p class="intro-label">Philosophy</p>
+  </div>
+  <p class="intro-body">
+    A design always starts with <em>who lives there</em> — how you want to inhabit those spaces, what is important to you, and how you want to feel there. We honor the magic of each place.
+  </p>
+</section>
+
+<section class="services">
+  <div class="services-header">
+    <h2>Our Work</h2>
+    <span>Three areas of expertise</span>
+  </div>
+  <div class="services-grid">
+    <div class="service-item">
+      <span class="service-num">01</span>
+      <img class="service-img" src="https://static.wixstatic.com/media/1d616c_dafc9aef994e4cb098b0d7b8a095a488~mv2.png" alt="Landscape Design">
+      <h3 class="service-title">Landscape Design<br>&amp; Creativity</h3>
+      <p class="service-desc">Personalized, unique landscapes that are imaginative, functional, and environmentally sensitive — beautiful gardens that enhance life like wonderful music or fine art.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-num">02</span>
+      <img class="service-img" src="https://static.wixstatic.com/media/1d616c_06830c5f4283471c9013afb48e8c76de~mv2.png" alt="Plant Selection">
+      <h3 class="service-title">Thoughtful<br>Plant Selection</h3>
+      <p class="service-desc">By carefully analyzing microclimate, planting zone, and sun and shade patterns, we select plants, flowers, and trees according to their ability to thrive in a specific spot.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-num">03</span>
+      <img class="service-img" src="https://static.wixstatic.com/media/1d616c_7c1030ba4ae14785831f74d218830bce~mv2.png" alt="Stonework">
+      <h3 class="service-title">Stonework<br>&amp; Woodwork</h3>
+      <p class="service-desc">Stone and woodwork create borders, protect from erosion, and define walkable areas — while adding incredible interest and enduring beauty to every landscape.</p>
+    </div>
+  </div>
+</section>
+
+<section class="quote-section">
+  <p class="quote-text">"Leave room for life in a space."</p>
+
+</section>
+
+<section class="approach">
+  <div class="approach-img">
+    <img src="https://static.wixstatic.com/media/1d616c_693636f8272647c58780359aefda5ec1~mv2.png" alt="Garden approach">
+  </div>
+  <div class="approach-content">
+    <p class="approach-eyebrow">Our Approach</p>
+    <h2 class="approach-title">We work from <em>meaning</em>,<br>not from trend</h2>
+    <p class="approach-text">
+      We work with your vision and site it within the local context to create a deep sense of place. To find out more about our process, please <a href="about.html" style="color: var(--moss); text-decoration: underline; text-underline-offset: 3px;">click here</a>.
+    </p>
+    <a href="gallery.html" class="approach-cta">
+      See the Gallery
+      <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+        <path d="M1 5h14M10 1l5 4-5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <h2 class="cta-headline">
+    Let's create your <em>perfect space</em>
+  </h2>
+  <div class="cta-right">
+    <a href="contact.html" class="cta-contact-link">Get in Touch</a>
+    <div class="cta-detail">
+      <a href="tel:7165708465">716.570.8465</a><br>
+      <a href="/cdn-cgi/l/email-protection#89f9e8e4ece5e8a7ece8fbe5c9eee4e8e0e5a7eae6e4"><span class="__cf_email__" data-cfemail="2a5a4b474f464b044f4b58466a4d474b434604494547">[email&#160;protected]</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-copy">©2026 Earl Landscape Design</p>
+  <ul class="footer-links">
+    <li><a href="https://www.instagram.com/gardendesignandbuild/" target="_blank">Instagram</a></li>
+  </ul>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/
