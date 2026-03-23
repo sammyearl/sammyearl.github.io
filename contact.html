@@ -31,7 +31,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -68,7 +67,6 @@
     .nav-links a:hover,
     .nav-links a.active { color: var(--ink); }
 
-    /* LAYOUT */
     .contact-wrap {
       min-height: 100vh;
       display: grid;
@@ -76,7 +74,6 @@
       padding-top: 5rem;
     }
 
-    /* LEFT PANEL */
     .contact-left {
       padding: 7rem 5rem;
       display: flex;
@@ -143,7 +140,6 @@
     }
     .contact-detail-value a:hover { color: var(--moss); }
 
-    /* PHOTO ACCENT — small, tucked below details */
     .contact-photo-accent {
       margin-top: 4.5rem;
       display: flex;
@@ -171,7 +167,6 @@
       padding-bottom: 0.25rem;
     }
 
-    /* RIGHT PANEL — form */
     .contact-right {
       background: var(--linen);
       padding: 7rem 5rem;
@@ -269,7 +264,6 @@
       font-style: italic;
     }
 
-    /* FOOTER */
     footer {
       border-top: 1px solid var(--rule);
       padding: 2.5rem 4rem;
@@ -334,9 +328,8 @@
         </div>
       </div>
 
-      <!-- Photo as small, quiet accent -->
       <div class="contact-photo-accent">
-        <img src="contact-photo.jpeg" alt="A garden by Earl Landscape Design">
+        <img src="contact-photo.jpeg" alt="Our dogs in the garden">
         <p class="contact-photo-caption">Our office staff, always on duty.</p>
       </div>
     </div>
@@ -386,22 +379,28 @@
   </footer>
 
   <script>
-    const form = document.getElementById('contact-form');
-    form.addEventListener('submit', async function(e) {
+    var form = document.getElementById('contact-form');
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const data = new FormData(form);
-      const response = await fetch(form.action, {
+      var data = new FormData(form);
+      fetch(form.action, {
         method: 'POST',
         body: data,
         headers: { 'Accept': 'application/json' }
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(json) {
+        if (json.ok) {
+          document.getElementById('form-success').classList.add('show');
+          form.reset();
+          form.style.display = 'none';
+        } else {
+          alert('Something went wrong — please email us at info@earllandscapedesign.com');
+        }
+      })
+      .catch(function() {
+        alert('Something went wrong — please email us at info@earllandscapedesign.com');
       });
-      if (response.ok) {
-        document.getElementById('form-success').classList.add('show');
-        form.reset();
-        form.style.display = 'none';
-      } else {
-        alert('Something went wrong. Please try emailing us directly at info@earllandscapedesign.com');
-      }
     });
   </script>
 
