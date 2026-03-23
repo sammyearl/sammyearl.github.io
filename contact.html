@@ -63,7 +63,27 @@
   }
   
 
-  .contact-right {
+ .contact-right {
+  background: var(--linen);
+  padding: 7rem 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.contact-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('contact-photo.jpeg') center center / cover no-repeat;
+  opacity: 0.15;
+  z-index: 0;
+}
+.contact-right > * {
+  position: relative;
+  z-index: 1;
+}
     background: var(--linen);
     padding: 7rem 5rem;
     display: flex;
