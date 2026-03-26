@@ -55,6 +55,8 @@
     text-decoration: none;
     line-height: 1.2;
   }
+  .nav-logo { display: flex; align-items: center; gap: 0.6rem; }
+  .nav-logo-img { width: 36px; height: 36px; border-radius: 4px; object-fit: cover; flex-shrink: 0; }
 
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a {
@@ -532,7 +534,7 @@
 
 <nav id="nav">
   <a href="index.html" class="nav-logo">
-    Earl Landscape Design
+        <img src="logo.png" alt="Earl Landscape Design" class="nav-logo-img">Earl Landscape Design
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
     <span></span><span></span><span></span>
