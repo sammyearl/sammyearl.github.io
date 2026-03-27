@@ -94,6 +94,17 @@
 </div>
 
 <div class="gallery-grid">
+    <div class="img-wrap reveal" data-cat="gardens"><img src="g-garden-pool-path.jpg" alt="Garden with pool path" loading="lazy"></div>
+  <div class="img-wrap reveal" data-cat="gardens"><img src="https://static.wixstatic.com/media/1d616c_95dbd00f482a41f8bbdccb5a230b7822~mv2.png/v1/fill/w_1200,h_900,fp_0.50_0.50,q_85,enc_avif,quality_auto/1d616c_95dbd00f482a41f8bbdccb5a230b7822~mv2.png" alt="Garden" loading="lazy"></div>
+  <div class="img-wrap reveal" data-cat="gardens"><img src="g-pool-and-garden.jpg" alt="Pool and garden" loading="lazy"></div>
+  <div class="img-wrap reveal" data-cat="gardens"><img src="https://static.wixstatic.com/media/1d616c_dafc9aef994e4cb098b0d7b8a095a488~mv2.png/v1/fill/w_1200,h_900,fp_0.50_0.50,q_85,enc_avif,quality_auto/1d616c_dafc9aef994e4cb098b0d7b8a095a488~mv2.png" alt="Garden" loading="lazy"></div>
+  <div class="img-wrap reveal" data-cat="gardens"><img src="https://static.wixstatic.com/media/1d616c_9fc91ec34e5c45bbadb5009efd8fa015~mv2.png/v1/fill/w_1200,h_900,fp_0.50_0.50,q_85,enc_avif,quality_auto/1d616c_9fc91ec34e5c45bbadb5009efd8fa015~mv2.png" alt="Garden" loading="lazy"></div>
+  <div class="img-wrap reveal" data-cat="gardens"><img src="https://static.wixstatic.com/media/1d616c_06830c5f4283471c9013afb48e8c76de~mv2.png/v1/fill/w_1200,h_900,fp_0.50_0.50,q_85,enc_avif,quality_auto/1d616c_06830c5f4283471c9013afb48e8c76de~mv2.png" alt="Garden" loading="lazy"></div>
+  <div class="img-wrap reveal" data-cat="gardens"><img src="https://static.wixstatic.com/media/1d616c_cba2e29421c04d0e98f2923ffb1ffe88~mv2.png/v1/fill/w_1200,h_900,fp_0.50_0.50,q_85,enc_avif,quality_auto/1d616c_cba2e29421c04d0e98f2923ffb1ffe88~mv2.png" alt="Garden" loading="lazy"></div>
+  <div class="img-wrap reveal" data-cat="gardens"><img src="https://static.wixstatic.com/media/1d616c_eeacae7fb20c415cba7ff73ded839aaa~mv2.png/v1/fill/w_1200,h_900,fp_0.50_0.50,q_85,enc_avif,quality_auto/1d616c_eeacae7fb20c415cba7ff73ded839aaa~mv2.png" alt="Garden" loading="lazy"></div>
+  <div class="img-wrap reveal" data-cat="gardens"><img src="g-brick-long-entry.jpg" alt="Brick long entry" loading="lazy"></div>
+  <div class="img-wrap reveal" data-cat="gardens"><img src="https://static.wixstatic.com/media/1d616c_693636f8272647c58780359aefda5ec1~mv2.png/v1/fill/w_1200,h_900,fp_0.50_0.50,q_85,enc_avif,quality_auto/1d616c_693636f8272647c58780359aefda5ec1~mv2.png" alt="Garden" loading="lazy"></div>
+  <div class="img-wrap reveal" data-cat="gardens"><img src="https://static.wixstatic.com/media/1d616c_575e7fd949194e9da875e45734c53f26~mv2.png/v1/fill/w_1200,h_900,fp_0.50_0.50,q_85,enc_avif,quality_auto/1d616c_575e7fd949194e9da875e45734c53f26~mv2.png" alt="Garden" loading="lazy"></div>
   <div class="img-wrap reveal" data-cat="stonework"><img src="g-stone-path.jpg" alt="Stone path" loading="lazy"></div>
   <div class="img-wrap reveal" data-cat="stonework"><img src="g-tulips-entry.jpg" alt="Tulips entry" loading="lazy"></div>
   <div class="img-wrap reveal" data-cat="stonework"><img src="g-stone-install.jpg" alt="Stone installation" loading="lazy"></div>
@@ -128,7 +139,7 @@
       btn.classList.add('active');
       const filter = btn.dataset.filter;
       document.querySelectorAll('.img-wrap').forEach(el => {
-        el.style.display = (el.dataset.cat === filter) ? 'block' : 'none';
+        el.style.display = (filter === 'gardens' || el.dataset.cat === filter) ? 'block' : 'none';
       });
     });
   });
