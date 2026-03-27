@@ -87,6 +87,7 @@
 </div>
 
 <div class="filter-bar">
+  <button class="filter-btn" data-filter="all">All Work</button>
   <button class="filter-btn active" data-filter="gardens">Gardens</button>
   <button class="filter-btn" data-filter="stonework">Stonework</button>
   <button class="filter-btn" data-filter="woodwork">Woodwork</button>
@@ -144,7 +145,7 @@
       btn.classList.add('active');
       const filter = btn.dataset.filter;
       document.querySelectorAll('.img-wrap').forEach(el => {
-        el.style.display = (el.dataset.cat === filter) ? 'block' : 'none';
+        el.style.display = (filter === 'all' || el.dataset.cat === filter) ? 'block' : 'none';
       });
     });
   });
